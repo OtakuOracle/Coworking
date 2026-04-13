@@ -1,0 +1,16 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Coworking.MainWindow"
+        Title="Авторизация"
+		Icon="Icon/icon.png">
+	
+	<StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+		<TextBox Margin="5" Name="LoginTextBox" Width="200"  FontFamily="Times New Roman"  Watermark="Введите логин"></TextBox>
+		<TextBox Margin="5" Name="PasswordTextBox" Width="200"  FontFamily="Times New Roman" Watermark="Введите пароль"></TextBox>
+		<Button Content="Продолжить без регистрации" FontFamily="Times New Roman" Margin="5" Click="Guest_Click"></Button>
+		<Button Content="Авторизироваться" FontFamily="Times New Roman"  Background="#FFA07A" Margin="5" Click="Auth_Click"></Button>
+	</StackPanel>
+</Window>
