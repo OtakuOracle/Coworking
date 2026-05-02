@@ -225,11 +225,9 @@ public partial class AddEditRoom : Window
 
         var roomToDelete = context.Rooms.Where(x => x.RoomId == roomId).FirstOrDefault();
 
-        //if (roomToDelete != null)
-        //{
+  
             context.Rooms.Remove(roomToDelete);
             context.SaveChanges();
-        //}
 
         var nice = MessageBoxManager.GetMessageBoxStandard("Успех", "Комната удалена", MsBox.Avalonia.Enums.ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Success);
         await nice.ShowAsync();
@@ -255,17 +253,17 @@ public partial class AddEditRoom : Window
 
         try
         {
-            updateroom.RoomType = context.RoomTypes.FirstOrDefault(x => x.RoomTypeName == RoomType.SelectedItem!.ToString());
+            updateroom?.RoomType = context.RoomTypes.FirstOrDefault(x => x.RoomTypeName == RoomType.SelectedItem!.ToString())!;
 
 
 
             if (!string.IsNullOrEmpty(ImageName))
             {
-                updateroom.Photo = "images/" + ImageName;
+                updateroom?.Photo = "images/" + ImageName;
             }
             else if (!string.IsNullOrEmpty(_currentPhotoPath))
             {
-                updateroom.Photo = _currentPhotoPath;
+                updateroom?.Photo = _currentPhotoPath;
             }
 
 
