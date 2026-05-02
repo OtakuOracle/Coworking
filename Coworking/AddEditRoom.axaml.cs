@@ -55,28 +55,62 @@ public partial class AddEditRoom : Window
     {
         using var context = new TrenirovkaContext();
 
-        ListEquipment.ItemsSource = context.Equipment.ToList();
+        var allEquipment = context.Equipment.ToList();
+
+        if (DataContext is Room currentRoom)
+        {
+            foreach (var eq in allEquipment)
+            {
+                bool isAssigned = currentRoom.Equipment != null &&
+                                  currentRoom.Equipment.Any(re => re.EquipmentId == eq.EquipmentId);
+            }
+        }
+        ListEquipment.ItemsSource = allEquipment;
     }
 
 
-    private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
-    {
-        var a = ListEquipment.ItemsSource as List<Equipment>;
-    }
+
+
 
 
     private void CheckBox_IsCheckedChanged(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
+        var checkBox = sender as CheckBox;
+        var equipmentId = (int)checkBox!.Tag!;
         var room = DataContext as Room;
 
-        using var context = new TrenirovkaContext();
-        var equipment = context.Equipment.FirstOrDefault(x => x.EquipmentId == (int)(sender as CheckBox)!.Tag!);
+        if (room == null)
+        {
+            return;
+        }
 
-        room!.Equipment.Add(equipment!);
-        context.SaveChanges();
+        if (room.Equipment == null)
+        {
+            room.Equipment = new List<Equipment>();
+        }
 
-        DataContext = room;
+        bool isChecked = (bool)checkBox.IsChecked!;
+
+        if (isChecked)
+        {
+            if (!room.Equipment.Any(re => re.EquipmentId == equipmentId))
+            {
+                room.Equipment.Add(new Equipment { EquipmentId = equipmentId });
+            }
+        }
+        else
+        {
+            var existingRoomEquipment = room.Equipment.FirstOrDefault(re => re.EquipmentId == equipmentId);
+            if (existingRoomEquipment != null)
+            {
+                room.Equipment.Remove(existingRoomEquipment);
+            }
+        }
+
     }
+
+
+
 
     private void Back_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
@@ -115,6 +149,7 @@ public partial class AddEditRoom : Window
             if(RoomType.SelectedItem != null)
             { 
                 newRoom.RoomType = context.RoomTypes.FirstOrDefault(x => x.RoomTypeName == RoomType.SelectedItem!.ToString())!;
+
 
                 newRoom.Photo = "images/" + ImageName;
 

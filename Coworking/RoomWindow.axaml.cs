@@ -103,13 +103,7 @@ public partial class RoomWindow : Window
                 equipmentListControl.ItemsSource = equipmentList;
             }
         }
-        else
-        {
-            if (this.FindControl<ItemsControl>("RoomEquipmentList") is ItemsControl equipmentListControl)
-            {
-                equipmentListControl.ItemsSource = new List<Equipment>();
-            }
-        }
+     
     }
 
 
