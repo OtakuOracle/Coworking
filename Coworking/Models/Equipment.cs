@@ -8,6 +8,7 @@ public partial class Equipment
     public int EquipmentId { get; set; }
 
     public string? EquipmentName { get; set; }
+   //ublic bool IsSelected { get; set; }
 
     public virtual ICollection<Room> Rooms { get; set; } = new List<Room>();
 }

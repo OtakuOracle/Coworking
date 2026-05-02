@@ -177,3 +177,4 @@ C:\Users\Admin\Desktop\Coworking\Coworking\bin\Debug\net10.0\images\media-room.j
 C:\Users\Admin\Desktop\Coworking\Coworking\bin\Debug\net10.0\images\open-space-room.jpg
 C:\Users\Admin\Desktop\Coworking\Coworking\bin\Debug\net10.0\DialogHost.Avalonia.dll
 C:\Users\Admin\Desktop\Coworking\Coworking\bin\Debug\net10.0\MsBox.Avalonia.dll
+C:\Users\Admin\Desktop\Coworking\Coworking\obj\Debug\net10.0\Coworking.sourcelink.json

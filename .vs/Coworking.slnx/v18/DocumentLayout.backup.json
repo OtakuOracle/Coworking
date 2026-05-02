@@ -1,0 +1,207 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Admin\\Desktop\\Coworking\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B9EF7E81-D6CF-87E5-9322-593B6B03123A}|Coworking\\Coworking.csproj|c:\\users\\admin\\desktop\\coworking\\coworking\\roomwindow.axaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{B9EF7E81-D6CF-87E5-9322-593B6B03123A}|Coworking\\Coworking.csproj|solutionrelative:coworking\\roomwindow.axaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9EF7E81-D6CF-87E5-9322-593B6B03123A}|Coworking\\Coworking.csproj|c:\\users\\admin\\desktop\\coworking\\coworking\\models\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9EF7E81-D6CF-87E5-9322-593B6B03123A}|Coworking\\Coworking.csproj|solutionrelative:coworking\\models\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9EF7E81-D6CF-87E5-9322-593B6B03123A}|Coworking\\Coworking.csproj|c:\\users\\admin\\desktop\\coworking\\coworking\\addeditroom.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9EF7E81-D6CF-87E5-9322-593B6B03123A}|Coworking\\Coworking.csproj|solutionrelative:coworking\\addeditroom.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9EF7E81-D6CF-87E5-9322-593B6B03123A}|Coworking\\Coworking.csproj|c:\\users\\admin\\desktop\\coworking\\coworking\\models\\equipment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9EF7E81-D6CF-87E5-9322-593B6B03123A}|Coworking\\Coworking.csproj|solutionrelative:coworking\\models\\equipment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9EF7E81-D6CF-87E5-9322-593B6B03123A}|Coworking\\Coworking.csproj|c:\\users\\admin\\desktop\\coworking\\coworking\\roomwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9EF7E81-D6CF-87E5-9322-593B6B03123A}|Coworking\\Coworking.csproj|solutionrelative:coworking\\roomwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9EF7E81-D6CF-87E5-9322-593B6B03123A}|Coworking\\Coworking.csproj|c:\\users\\admin\\desktop\\coworking\\coworking\\addeditroom.axaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{B9EF7E81-D6CF-87E5-9322-593B6B03123A}|Coworking\\Coworking.csproj|solutionrelative:coworking\\addeditroom.axaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9EF7E81-D6CF-87E5-9322-593B6B03123A}|Coworking\\Coworking.csproj|c:\\users\\admin\\desktop\\coworking\\coworking\\bookingwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9EF7E81-D6CF-87E5-9322-593B6B03123A}|Coworking\\Coworking.csproj|solutionrelative:coworking\\bookingwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9EF7E81-D6CF-87E5-9322-593B6B03123A}|Coworking\\Coworking.csproj|c:\\users\\admin\\desktop\\coworking\\coworking\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9EF7E81-D6CF-87E5-9322-593B6B03123A}|Coworking\\Coworking.csproj|solutionrelative:coworking\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9EF7E81-D6CF-87E5-9322-593B6B03123A}|Coworking\\Coworking.csproj|c:\\users\\admin\\desktop\\coworking\\coworking\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9EF7E81-D6CF-87E5-9322-593B6B03123A}|Coworking\\Coworking.csproj|solutionrelative:coworking\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9EF7E81-D6CF-87E5-9322-593B6B03123A}|Coworking\\Coworking.csproj|c:\\users\\admin\\desktop\\coworking\\coworking\\mainwindow.axaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{B9EF7E81-D6CF-87E5-9322-593B6B03123A}|Coworking\\Coworking.csproj|solutionrelative:coworking\\mainwindow.axaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 119,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 17,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 192,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Equipment.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Coworking\\Coworking\\Models\\Equipment.cs",
+              "RelativeDocumentMoniker": "Coworking\\Models\\Equipment.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Coworking\\Coworking\\Models\\Equipment.cs",
+              "RelativeToolTip": "Coworking\\Models\\Equipment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T10:38:44.531Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AddEditRoom.axaml",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Coworking\\Coworking\\AddEditRoom.axaml",
+              "RelativeDocumentMoniker": "Coworking\\AddEditRoom.axaml",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Coworking\\Coworking\\AddEditRoom.axaml",
+              "RelativeToolTip": "Coworking\\AddEditRoom.axaml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAADYAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-05-02T10:04:35.779Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RoomWindow.axaml",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Coworking\\Coworking\\RoomWindow.axaml",
+              "RelativeDocumentMoniker": "Coworking\\RoomWindow.axaml",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Coworking\\Coworking\\RoomWindow.axaml*",
+              "RelativeToolTip": "Coworking\\RoomWindow.axaml*",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAwDsAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-26T20:12:28.679Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Room.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Coworking\\Coworking\\Models\\Room.cs",
+              "RelativeDocumentMoniker": "Coworking\\Models\\Room.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Coworking\\Coworking\\Models\\Room.cs",
+              "RelativeToolTip": "Coworking\\Models\\Room.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAwC0AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-26T19:49:43.816Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BookingWindow.axaml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Coworking\\Coworking\\BookingWindow.axaml.cs",
+              "RelativeDocumentMoniker": "Coworking\\BookingWindow.axaml.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Coworking\\Coworking\\BookingWindow.axaml.cs",
+              "RelativeToolTip": "Coworking\\BookingWindow.axaml.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAA5wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-23T10:25:00.294Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AddEditRoom.axaml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Coworking\\Coworking\\AddEditRoom.axaml.cs",
+              "RelativeDocumentMoniker": "Coworking\\AddEditRoom.axaml.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Coworking\\Coworking\\AddEditRoom.axaml.cs",
+              "RelativeToolTip": "Coworking\\AddEditRoom.axaml.cs",
+              "ViewState": "AgIAAKMAAAAAAAAAAAAAAMAAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-23T10:23:39.297Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RoomWindow.axaml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Coworking\\Coworking\\RoomWindow.axaml.cs",
+              "RelativeDocumentMoniker": "Coworking\\RoomWindow.axaml.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Coworking\\Coworking\\RoomWindow.axaml.cs",
+              "RelativeToolTip": "Coworking\\RoomWindow.axaml.cs",
+              "ViewState": "AgIAAKEAAAAAAAAAAAAuwLwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-23T10:11:09.626Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MainWindow.axaml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Coworking\\Coworking\\MainWindow.axaml.cs",
+              "RelativeDocumentMoniker": "Coworking\\MainWindow.axaml.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Coworking\\Coworking\\MainWindow.axaml.cs",
+              "RelativeToolTip": "Coworking\\MainWindow.axaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-23T10:09:27.989Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MainWindow.axaml",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Coworking\\Coworking\\MainWindow.axaml",
+              "RelativeDocumentMoniker": "Coworking\\MainWindow.axaml",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Coworking\\Coworking\\MainWindow.axaml",
+              "RelativeToolTip": "Coworking\\MainWindow.axaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-23T10:09:24.335Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\Coworking\\Coworking\\Class1.cs",
+              "RelativeDocumentMoniker": "Coworking\\Class1.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\Coworking\\Coworking\\Class1.cs",
+              "RelativeToolTip": "Coworking\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-23T10:08:26.376Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

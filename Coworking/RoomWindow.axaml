@@ -48,7 +48,8 @@
 							<TextBlock Text="{Binding Capacity, StringFormat='Вместимость:{0}'}" FontFamily="Times New Roman" Margin="5"/>
 							<TextBlock Text="{Binding Cost, StringFormat='Цена:{0}'}" FontFamily="Times New Roman" Margin="5"/>
 							<TextBlock Text="{Binding MinTime, StringFormat='Мин. время бронирования:{0}'}" FontFamily="Times New Roman" Margin="5"/>
-							<TextBlock Text="{Binding Rating, StringFormat='Рейтинг:{0}'}" Background="{Binding ColorRating}" FontFamily="Times New Roman" Margin="5"/>
+							<TextBlock Text="{Binding Rating, StringFormat='Рейтинг:{0}'}" FontFamily="Times New Roman" Margin="5"/>
+							<TextBlock Text="{Binding ColorRating}" FontFamily="Times New Roman"  Margin="5"/>
 							<TextBlock Text="{Binding Discount, StringFormat='Скидка:{0}'}" Background="{Binding ColorDiscount}" FontFamily="Times New Roman" Margin="5"/>
 							<TextBlock Text="{Binding Description, StringFormat='Описание:{0}'}" FontFamily="Times New Roman" Margin="5"/>
 							<TextBlock Text="{Binding Cost, StringFormat='Цена:{0}'}" FontFamily="Times New Roman" Margin="5"/>

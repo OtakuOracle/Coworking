@@ -74,22 +74,19 @@ public partial class RoomWindow : Window
         }
 
 
-        if (Filter.SelectedItem != null && Filter.SelectedItem.ToString() != "Все типы")
+        if (Filter.SelectedItem != null && Filter.SelectedIndex != 0)
         {
-            allRooms = allRooms.Where(x => x.RoomType.RoomTypeName == Filter.SelectedItem.ToString()).ToList();
+            allRooms = allRooms.Where(x => x.RoomType!.RoomTypeName == Filter.SelectedItem.ToString()).ToList();
         }
 
 
-        if (SearchBox != null && !string.IsNullOrWhiteSpace(SearchBox.Text))
+        if (!string.IsNullOrWhiteSpace(SearchBox.Text))
         {
-            var searchTerm = SearchBox.Text.ToLower();
-            allRooms = allRooms.Where(x =>
-                (x.RoomType != null && !string.IsNullOrWhiteSpace(x.RoomType.RoomTypeName) && x.RoomType.RoomTypeName.ToLower().Contains(searchTerm)) ||
-                (x.RoomName != null && !string.IsNullOrWhiteSpace(x.RoomName) && x.RoomName.ToLower().Contains(searchTerm)) ||
-                (x.Equipment != null && x.Equipment.Any(eq =>
-                    eq.EquipmentName.ToLower().Contains(searchTerm)
-                ))
-            ).ToList();
+            allRooms = allRooms.Where(x => x.RoomName!.ToLower().Contains(SearchBox.Text.ToLower()) ||
+            x.RoomType != null && x.RoomType.RoomTypeName != null && x.RoomType.RoomTypeName.ToLower().Contains(SearchBox.Text.ToLower()) ||
+            x.Equipment != null && x.Equipment.Any(eq => eq.EquipmentName!.ToLower().Contains(SearchBox.Text.ToLower()))
+
+                ).ToList();
         }
 
         RoomsBox.ItemsSource = allRooms;
@@ -114,6 +111,8 @@ public partial class RoomWindow : Window
             }
         }
     }
+
+
 
 
     private void SearchBox_KeyUp(object? sender, Avalonia.Input.KeyEventArgs e)

@@ -15,12 +15,12 @@ namespace Coworking;
 public partial class AddEditRoom : Window
 {
     User localUser;
-    private Room _room;
+    private Room updateroom;
     private string ImageName;
     private string _currentPhotoPath;
 
 
-    public AddEditRoom()
+    public AddEditRoom() //добавление
     {
         InitializeComponent();
         LoadTypeRoom();
@@ -34,28 +34,26 @@ public partial class AddEditRoom : Window
         localUser = user;
     }
 
-    public AddEditRoom(User user, Room room)
+    public AddEditRoom(User user, Room room) //редактирование
     {
         InitializeComponent();
         using var context = new TrenirovkaContext();
-        _room = room;
+        updateroom = room;
         localUser = user;
         GetInfo();
         LoadTypeRoom();
-        DataContext = _room;
+        DataContext = updateroom;
         EditBut.IsVisible = true;
         DeleteBut.IsVisible = true;
-        ImageBox.Source = _room.GetPhoto;
-        var a = _room.RoomTypeId;
+        ImageBox.Source = updateroom.GetPhoto;
 
-        RoomType.SelectedItem = context.RoomTypes.Where(x => x.RoomTypeId == a).Select(x => x.RoomTypeName).FirstOrDefault();
-
+        RoomType.SelectedItem = updateroom?.RoomType?.RoomTypeName;
     }
 
 
     public void GetInfo()
     {
-        TrenirovkaContext context = new TrenirovkaContext();
+        using var context = new TrenirovkaContext();
 
         ListEquipment.ItemsSource = context.Equipment.ToList();
     }
@@ -71,10 +69,11 @@ public partial class AddEditRoom : Window
     {
         var room = DataContext as Room;
 
-        TrenirovkaContext context = new TrenirovkaContext();
+        using var context = new TrenirovkaContext();
         var equipment = context.Equipment.FirstOrDefault(x => x.EquipmentId == (int)(sender as CheckBox)!.Tag!);
 
-        room!.Equipment.Add(equipment);
+        room!.Equipment.Add(equipment!);
+        context.SaveChanges();
 
         DataContext = room;
     }
@@ -113,16 +112,9 @@ public partial class AddEditRoom : Window
             {
                 return;
             }
-
-            if (RoomType.SelectedItem != null)
-            {
-                var type = RoomType.SelectedItem.ToString();
-
-
-                var typeFin = context.RoomTypes.Where(x => x.RoomTypeName == type).Select(x => x.RoomTypeId).FirstOrDefault();
-
-
-                newRoom.RoomTypeId = typeFin;
+            if(RoomType.SelectedItem != null)
+            { 
+                newRoom.RoomType = context.RoomTypes.FirstOrDefault(x => x.RoomTypeName == RoomType.SelectedItem!.ToString())!;
 
                 newRoom.Photo = "images/" + ImageName;
 
@@ -156,15 +148,14 @@ public partial class AddEditRoom : Window
         {
             var excep = ex.ToString();
             var error = MessageBoxManager.GetMessageBoxStandard("Ошибка", excep, MsBox.Avalonia.Enums.ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Error);
-            error.ShowAsync();
+            await error.ShowAsync();
         }
     }
 
     private void LoadTypeRoom()
     {
         using var context = new TrenirovkaContext();
-        var type = context.RoomTypes.Select(x => x.RoomTypeName).ToList();
-        RoomType.ItemsSource = type;
+        RoomType.ItemsSource = context.RoomTypes.Select(x => x.RoomTypeName).ToList();
     }
 
     private async void AddImage_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -195,22 +186,32 @@ public partial class AddEditRoom : Window
     {
         using var context = new TrenirovkaContext();
 
-        var roomId = _room.RoomId;
+        var roomId = updateroom.RoomId;
 
         var roomToDelete = context.Rooms.Where(x => x.RoomId == roomId).FirstOrDefault();
 
-        if (roomToDelete != null)
-        {
-            context.Remove(roomToDelete);
+        //if (roomToDelete != null)
+        //{
+            context.Rooms.Remove(roomToDelete);
             context.SaveChanges();
-        }
+        //}
 
         var nice = MessageBoxManager.GetMessageBoxStandard("Успех", "Комната удалена", MsBox.Avalonia.Enums.ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Success);
         await nice.ShowAsync();
 
-        var catalog = new RoomWindow();
-        catalog.Show();
-        this.Close();
+        if (Class1.isAdmin == true)
+        {
+            var cat = new RoomWindow(Class1._user);
+            cat.Show();
+            this.Close();
+        }
+        else
+        {
+            var cat = new RoomWindow();
+            cat.Show();
+            this.Close();
+        }
+
     }
 
     private async void Edit_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -219,46 +220,51 @@ public partial class AddEditRoom : Window
 
         try
         {
-            var type = RoomType.SelectedItem.ToString();
+            updateroom.RoomType = context.RoomTypes.FirstOrDefault(x => x.RoomTypeName == RoomType.SelectedItem!.ToString());
 
-
-            var typeFin = context.RoomTypes.Where(x => x.RoomTypeName == type).Select(x => x.RoomTypeId).FirstOrDefault();
-
-
-            _room.RoomTypeId = typeFin;
 
 
             if (!string.IsNullOrEmpty(ImageName))
             {
-                _room.Photo = "images/" + ImageName;
+                updateroom.Photo = "images/" + ImageName;
             }
             else if (!string.IsNullOrEmpty(_currentPhotoPath))
             {
-                _room.Photo = _currentPhotoPath;
+                updateroom.Photo = _currentPhotoPath;
             }
 
 
-            if (!ValidateProduct(_room))
+            if (!ValidateProduct(updateroom))
             {
                 return;
             }
 
-            context.Rooms.Update(_room);
+            context.Rooms.Update(updateroom);
             await context.SaveChangesAsync();
 
             var message = MessageBoxManager.GetMessageBoxStandard("Успех", "Комната изменена", MsBox.Avalonia.Enums.ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Success);
             await message.ShowAsync();
 
-            var catalog = new RoomWindow();
-            catalog.Show();
-            this.Close();
+            if (Class1.isAdmin == true)
+            {
+                var cat = new RoomWindow(Class1._user);
+                cat.Show();
+                this.Close();
+            }
+            else
+            {
+                var cat = new RoomWindow();
+                cat.Show();
+                this.Close();
+            }
+
 
         }
         catch (Exception ex)
         {
             var exec = ex.ToString();
             var error = MessageBoxManager.GetMessageBoxStandard("Ошибка", exec, MsBox.Avalonia.Enums.ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Error);
-            error.ShowAsync();
+            await error.ShowAsync();
         }
 
     }
