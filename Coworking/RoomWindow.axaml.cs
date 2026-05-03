@@ -1,20 +1,18 @@
 using System.Linq;
+using System.Runtime.InteropServices.Marshalling;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using Coworking;
 using Coworking.Models;
 using Microsoft.EntityFrameworkCore;
 using MsBox.Avalonia;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Coworking;
 
 public partial class RoomWindow : Window
 {
-    User localUser;
 
+    User localUser;
     public RoomWindow()
     {
         InitializeComponent();
@@ -41,18 +39,18 @@ public partial class RoomWindow : Window
         switch (roleId)
         {
             case 1: SearchBox.IsVisible = true; Sort.IsVisible = true; Filter.IsVisible = true; AddButton.IsVisible = true; BookingButton.IsVisible = true; break;
-            case 2: SearchBox.IsVisible = true; Sort.IsVisible = true; Filter.IsVisible = true; BookingButton.IsVisible = true; break; 
+            case 2: SearchBox.IsVisible = true; Sort.IsVisible = true; Filter.IsVisible = true; BookingButton.IsVisible = true; break;
         }
     }
 
     private void Get()
     {
         using var context = new TrenirovkaContext();
-
         var allRooms = context.Rooms
-                                .Include(x => x.RoomType)
-                                .Include(x => x.Equipment) 
-                                .ToList();
+                              .Include(x => x.RoomType) // Загружаем тип комнаты
+                              .Include(x => x.RoomEquipments) // Загружаем промежуточную таблицу (связки)
+                               .ThenInclude(re => re.Equipment) // Загружаем данные из таблицы Equipment
+                              .ToList();
 
         switch (Sort.SelectedIndex)
         {
@@ -92,7 +90,40 @@ public partial class RoomWindow : Window
         RoomsBox.ItemsSource = allRooms;
     }
 
-    private void LoadRoomEquipment(Room room) 
+
+    private void AddButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        var add = new AddEditRoom();
+        add.Show();
+        this.Close();
+    }
+    private void Back_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        var main = new MainWindow();
+        main.Show();
+        this.Close();
+    }
+
+    private void RoomsBox_SelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (RoomsBox.SelectedItem is Room room)
+        {
+            LoadRoomEquipment(room);
+
+            if (localUser != null)
+            {
+                var addedit = new AddEditRoom(localUser, room);
+                addedit.Show();
+                this.Close();
+            }
+            else
+            {
+                var error = MessageBoxManager.GetMessageBoxStandard("Ошибка", "Пожалуйста, войдите в систему, чтобы редактировать", MsBox.Avalonia.Enums.ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Error);
+                error.ShowAsync();
+            }
+        }
+    }
+    private void LoadRoomEquipment(Room room)
     {
         if (room != null && room.Equipment != null)
         {
@@ -103,11 +134,15 @@ public partial class RoomWindow : Window
                 equipmentListControl.ItemsSource = equipmentList;
             }
         }
-     
+
     }
 
-
-
+    private void BookingButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        var book = new BookingWindow();
+        book.Show();
+        this.Close();
+    }
 
     private void SearchBox_KeyUp(object? sender, Avalonia.Input.KeyEventArgs e)
     {
@@ -139,44 +174,6 @@ public partial class RoomWindow : Window
         Filter.SelectedIndex = 0;
     }
 
-    private void AddButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
-    {
-        var add = new AddEditRoom();
-        add.Show();
-        this.Close();
-    }
 
-    private void BookingButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
-    {
-        var book = new BookingWindow();
-        book.Show();
-        this.Close();
-    }
 
-    private void RoomsBox_SelectionChanged(object? sender, SelectionChangedEventArgs e)
-    {
-        if (RoomsBox.SelectedItem is Room room)
-        {
-            LoadRoomEquipment(room);
-
-            if (localUser != null)
-            {
-                var addedit = new AddEditRoom(localUser, room);
-                addedit.Show();
-                this.Close();
-            }
-            else
-            {
-                var error = MessageBoxManager.GetMessageBoxStandard("Ошибка", "Пожалуйста, войдите в систему, чтобы редактировать", MsBox.Avalonia.Enums.ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Error);
-                error.ShowAsync();
-            }
-        }
-    }
-
-    private void Back_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
-    {
-        var main = new MainWindow();
-        main.Show();
-        this.Close();
-    }
 }

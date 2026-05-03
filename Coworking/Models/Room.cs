@@ -75,4 +75,9 @@ public partial class Room
     public virtual RoomType? RoomType { get; set; }
 
     public virtual ICollection<Equipment> Equipment { get; set; } = new List<Equipment>();
+
+    public virtual ICollection<RoomEquipment> RoomEquipments { get; set; } = new List<RoomEquipment>(); // Инициализация коллекции
+
+
+
 }

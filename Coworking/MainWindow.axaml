@@ -6,11 +6,10 @@
         x:Class="Coworking.MainWindow"
         Title="Авторизация"
 		Icon="Icon/icon.png">
-	
-	<StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-		<TextBox Margin="5" Name="LoginTextBox" Width="200"  FontFamily="Times New Roman"  Watermark="Введите логин"></TextBox>
-		<TextBox Margin="5" Name="PasswordTextBox" Width="200"  FontFamily="Times New Roman" Watermark="Введите пароль"></TextBox>
-		<Button Content="Продолжить без регистрации" FontFamily="Times New Roman" Margin="5" Click="Guest_Click"></Button>
-		<Button Content="Авторизироваться" FontFamily="Times New Roman"  Background="#FFA07A" Margin="5" Click="Auth_Click"></Button>
+	<StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+		<TextBox Name="EmailTextBox" Watermark="Логин" Margin="5" Width="200"></TextBox>
+		<TextBox Name="PasswordTextBox" Watermark="Пароль" Margin="5" Width="200"></TextBox>
+		<Button Content="Войти" Click="Auth_Click"  Margin="5" Width="200"/>
+		<Button Content="Войти как гость" Click="Guest_Click"  Margin="5" Width="200"/>
 	</StackPanel>
 </Window>

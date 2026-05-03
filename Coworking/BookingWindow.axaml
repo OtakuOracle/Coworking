@@ -4,35 +4,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 		x:CompileBindings="False"
-        x:Class="Coworking.BookingWindow" 
-		Title="Бронирования">
-
-<DockPanel>
-<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="5">
-			<ComboBox Margin="5" Width="200" Name="Filter"  IsVisible="False"   SelectionChanged="Filter_SelectionChanged" FontFamily="Times New Roman"></ComboBox>
-            <ComboBox Margin="5" Width="200" Name="UserFilter"  IsVisible="False"   SelectionChanged="UserFilter_SelectionChanged" FontFamily="Times New Roman"></ComboBox>
-            <Image Source="Icon/logo.ico" Width="200" Height="200" HorizontalAlignment="Center" Margin="0,10"/>
-        </StackPanel>
+        x:Class="Coworking.BookingWindow"
+        Title="BookingWindow">
 	
-	<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
-		<Button Content="Назад" Margin="5" Click="Back_Click"  FontFamily="Times New Roman"></Button>
-	</StackPanel>
+	<DockPanel>
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="5">
+			<ComboBox Margin="5" Width="200" Name="Filter" SelectionChanged="Filter_SelectionChanged" FontFamily="Times New Roman"></ComboBox>
+			<ComboBox Margin="5" Width="200" Name="UserFilter" SelectionChanged="UserFilter_SelectionChanged" FontFamily="Times New Roman"></ComboBox>
+			<Image Source="Icon/logo.ico" Width="200" Height="200" HorizontalAlignment="Center" Margin="0,10"/>
+		</StackPanel>
 
-	<ListBox Name="BookingsBox">
-		<ListBox.ItemTemplate>
-			<DataTemplate>
-				<DockPanel>
-					<StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">
-						<TextBlock Text="{Binding User.FullName, StringFormat='Клиент:{0}'}" FontFamily="Times New Roman" Margin="5" />
-						<TextBlock Text="{Binding Room.RoomName, StringFormat='Комната:{0}'}" FontFamily="Times New Roman" Margin="5"/>
-						<TextBlock Text="{Binding Date, StringFormat='Дата:{0}'}" FontFamily="Times New Roman" Margin="5"/>
-						<TextBlock Text="{Binding Time, StringFormat='Время:{0}'}" FontFamily="Times New Roman" Margin="5"/>
-						<TextBlock Text="{Binding BookingStatus.BookingStatusName, StringFormat='Статус:{0}'}" FontFamily="Times New Roman" Margin="5"/>
-						<TextBlock Text="{Binding Service.ServiceName, StringFormat='Услуга:{0}'}" FontFamily="Times New Roman" Margin="5"/>
-					</StackPanel>
-				</DockPanel>
-			</DataTemplate>
-		</ListBox.ItemTemplate>
-</ListBox>
-</DockPanel>
+		<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
+			<Button Content="Назад" Margin="5" Click="Back_Click"  FontFamily="Times New Roman"></Button>
+		</StackPanel>
+
+		<ListBox Name="BookingsBox">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<DockPanel>
+						<StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">
+							<TextBlock Text="{Binding User.FullName, StringFormat='Клиент:{0}'}" FontFamily="Times New Roman" Margin="5" />
+							<TextBlock Text="{Binding Room.RoomName, StringFormat='Комната:{0}'}" FontFamily="Times New Roman" Margin="5"/>
+							<TextBlock Text="{Binding Date, StringFormat='Дата:{0}'}" FontFamily="Times New Roman" Margin="5"/>
+							<TextBlock Text="{Binding Time, StringFormat='Время:{0}'}" FontFamily="Times New Roman" Margin="5"/>
+							<TextBlock Text="{Binding BookingStatus.BookingStatusName, StringFormat='Статус:{0}'}" FontFamily="Times New Roman" Margin="5"/>
+							<TextBlock Text="{Binding Service.ServiceName, StringFormat='Услуга:{0}'}" FontFamily="Times New Roman" Margin="5"/>
+						</StackPanel>
+					</DockPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</DockPanel>
 </Window>

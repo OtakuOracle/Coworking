@@ -2,46 +2,47 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
-        Width="800" Height="600"
-        x:CompileBindings="False"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		x:CompileBindings="False"
         x:Class="Coworking.AddEditRoom"
-        Title="Добавление и редактирование помещения"
-        Icon="Icon/icon.png">
+        Title="AddEditRoom">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto"
-                  HorizontalScrollBarVisibility="Disabled">
-        <StackPanel Orientation="Vertical"
+	<ScrollViewer VerticalScrollBarVisibility="Auto"
+					 HorizontalScrollBarVisibility="Disabled">
+		<StackPanel Orientation="Vertical"
                     HorizontalAlignment="Center"
                     Margin="20"
                     Spacing="8">
 
-            <TextBox Text="{Binding RoomName}" Width="200" Watermark="Введите название"  FontFamily="Times New Roman"></TextBox>
-            <TextBox Text="{Binding Capacity}" Width="200" Watermark="Введите вместимость" FontFamily="Times New Roman"></TextBox>
-            <TextBox Text="{Binding Cost}" Width="200" Watermark="Введите цену" FontFamily="Times New Roman"></TextBox>
-            <TextBox Text="{Binding MinTime}" Width="200" Watermark="Введите мин.время" FontFamily="Times New Roman"></TextBox>
-            <TextBox Text="{Binding Rating}" Width="200" Watermark="Введите рейтинг" FontFamily="Times New Roman"></TextBox>
-            <TextBox Text="{Binding Discount}" Width="200" Watermark="Введите скидку" FontFamily="Times New Roman"></TextBox>
-            <TextBox Text="{Binding Description}" Width="200" Watermark="Введите описание" FontFamily="Times New Roman"></TextBox>
-            <ComboBox Name="RoomType" Width="200" HorizontalAlignment="Center" PlaceholderText="Выберите тип" FontFamily="Times New Roman"></ComboBox>
-            <TextBlock Text="Оборудование:" TextAlignment="Left" HorizontalAlignment="Center"></TextBlock>
-            <ListBox Name="ListEquipment" ItemsSource="{Binding ListEquipment}" HorizontalAlignment="Center">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5">
-                            <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"
-                                      Tag="{Binding EquipmentId}"/>
-                            <TextBlock Text="{Binding EquipmentName}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+			<TextBox Text="{Binding RoomName}" Width="200" Watermark="Введите название"  FontFamily="Times New Roman"></TextBox>
+			<TextBox Text="{Binding Capacity}" Width="200" Watermark="Введите вместимость" FontFamily="Times New Roman"></TextBox>
+			<TextBox Text="{Binding Cost}" Width="200" Watermark="Введите цену" FontFamily="Times New Roman"></TextBox>
+			<TextBox Text="{Binding MinTime}" Width="200" Watermark="Введите мин.время" FontFamily="Times New Roman"></TextBox>
+			<TextBox Text="{Binding Rating}" Width="200" Watermark="Введите рейтинг" FontFamily="Times New Roman"></TextBox>
+			<TextBox Text="{Binding Discount}" Width="200" Watermark="Введите скидку" FontFamily="Times New Roman"></TextBox>
+			<TextBox Text="{Binding Description}" Width="200" Watermark="Введите описание" FontFamily="Times New Roman"></TextBox>
+			<ComboBox Name="RoomType" Width="200" HorizontalAlignment="Center" PlaceholderText="Выберите тип" FontFamily="Times New Roman"></ComboBox>
+			
+			<TextBlock Text="Оборудование:" TextAlignment="Left" HorizontalAlignment="Center"></TextBlock>
+			<ListBox Name="ListEquipment" ItemsSource="{Binding ListEquipment}" HorizontalAlignment="Center">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<CheckBox Content="{Binding EquipmentName}"
+							IsChecked="{Binding IsSelected}"
+							Tag="{Binding EquipmentId}"
+							Checked="CheckBox_IsCheckedChanged"
+							Unchecked="CheckBox_IsCheckedChanged">
+						</CheckBox>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
 
-            <Image Source="{Binding Photo}" Height="100" Width="100" Margin="5" Name="ImageBox"></Image>
-			
-			
-            <WrapPanel HorizontalAlignment="Center" Margin="10" ItemWidth="140">
-                <Button Content="Изменить"
+
+			<Image Source="{Binding Photo}" Height="100" Width="100" Margin="5" Name="ImageBox"></Image>
+
+
+			<WrapPanel HorizontalAlignment="Center" Margin="10" ItemWidth="140">
+				<Button Content="Изменить"
                         Margin="5"
                         Click="Edit_Click"
                         IsVisible="False"
@@ -49,27 +50,27 @@
                         Name="EditBut"
                         FontFamily="Times New Roman"/>
 
-                <Button Content="Назад"
+				<Button Content="Назад"
 						Width="100"
                         Margin="5"
                         Click="Back_Click"
                         FontFamily="Times New Roman"/>
 
-                <Button Content="Добавить"
+				<Button Content="Добавить"
 						Width="100"
                         Margin="5"
                         Click="Add_Click"
                         Background="#FFA07A"
                         FontFamily="Times New Roman"/>
 
-                <Button Content="Изображение"
+				<Button Content="Изображение"
 						Width="100"
                         Margin="5"
                         Click="AddImage_Click"
 						Background="#00FFFF"
                         FontFamily="Times New Roman"/>
 
-                <Button Content="Удалить"
+				<Button Content="Удалить"
 						Width="100"
                         Margin="5"
                         Click="Delete_Click"
@@ -77,8 +78,9 @@
                         IsVisible="False"
                         Name="DeleteBut"
                         FontFamily="Times New Roman"/>
-            </WrapPanel>
+			</WrapPanel>
 
-        </StackPanel>
-    </ScrollViewer>
+		</StackPanel>
+	</ScrollViewer>
 </Window>
+

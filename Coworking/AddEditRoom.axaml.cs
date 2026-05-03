@@ -8,12 +8,15 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
 using Coworking.Models;
+using Microsoft.EntityFrameworkCore;
 using MsBox.Avalonia;
+
 
 namespace Coworking;
 
 public partial class AddEditRoom : Window
 {
+
     User localUser;
     private Room updateroom;
     private string ImageName;
@@ -51,24 +54,14 @@ public partial class AddEditRoom : Window
     }
 
 
+
+
     public void GetInfo()
     {
-        using var context = new TrenirovkaContext();
+        TrenirovkaContext context = new TrenirovkaContext();
 
-        var allEquipment = context.Equipment.ToList();
-
-        if (DataContext is Room currentRoom)
-        {
-            foreach (var eq in allEquipment)
-            {
-                bool isAssigned = currentRoom.Equipment != null &&
-                                  currentRoom.Equipment.Any(re => re.EquipmentId == eq.EquipmentId);
-            }
-        }
-        ListEquipment.ItemsSource = allEquipment;
+        ListEquipment.ItemsSource = context.Equipment.ToList();
     }
-
-
 
 
 
@@ -76,39 +69,61 @@ public partial class AddEditRoom : Window
     private void CheckBox_IsCheckedChanged(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         var checkBox = sender as CheckBox;
-        var equipmentId = (int)checkBox!.Tag!;
+        if (checkBox == null) return;
+
         var room = DataContext as Room;
+        if (room == null) return;
 
-        if (room == null)
+        using (TrenirovkaContext context = new TrenirovkaContext())
         {
-            return;
-        }
+            var equipmentId = (int)checkBox.Tag!;
+            var equipment = context.Equipment.FirstOrDefault(x => x.EquipmentId == equipmentId);
 
-        if (room.Equipment == null)
-        {
-            room.Equipment = new List<Equipment>();
-        }
-
-        bool isChecked = (bool)checkBox.IsChecked!;
-
-        if (isChecked)
-        {
-            if (!room.Equipment.Any(re => re.EquipmentId == equipmentId))
+            if (equipment != null)
             {
-                room.Equipment.Add(new Equipment { EquipmentId = equipmentId });
+                if (checkBox.IsChecked == true)
+                {
+                    var updateEquipment = room.RoomEquipments
+                        .FirstOrDefault(re => re.EquipmentId == equipmentId);
+
+                    if (updateEquipment == null)
+                    {
+                        var newRoomEquipment = new RoomEquipment
+                        {
+                            RoomId = room.RoomId,
+                            EquipmentId = equipment.EquipmentId,
+                        };
+
+                        room.RoomEquipments.Add(newRoomEquipment);
+                        context.RoomEquipments.Add(newRoomEquipment); // Нужно добавить в контекст для сохранения
+                    }
+                    else
+                    {
+
+                        // ИСПРАВЛЕНО: используем existingEquipment вместо несуществующей переменной
+                        context.RoomEquipments.Update(updateEquipment);
+                    }
+                }
+                else
+                {
+                    var itemToRemove = room.RoomEquipments
+                        .FirstOrDefault(re => re.EquipmentId == equipmentId);
+
+                    if (itemToRemove != null)
+                    {
+                        room.RoomEquipments.Remove(itemToRemove);
+                        var dbItem = context.RoomEquipments.FirstOrDefault(re => re.RoomId == room.RoomId && re.EquipmentId == equipmentId);
+                        if (dbItem != null) context.RoomEquipments.Remove(dbItem);
+                    }
+                }
+
+                context.SaveChanges();
             }
         }
-        else
-        {
-            var existingRoomEquipment = room.Equipment.FirstOrDefault(re => re.EquipmentId == equipmentId);
-            if (existingRoomEquipment != null)
-            {
-                room.Equipment.Remove(existingRoomEquipment);
-            }
-        }
 
+        DataContext = null;
+        DataContext = room;
     }
-
 
 
 
@@ -146,12 +161,13 @@ public partial class AddEditRoom : Window
             {
                 return;
             }
-            if(RoomType.SelectedItem != null)
-            { 
+            if (RoomType.SelectedItem != null)
+            {
                 newRoom.RoomType = context.RoomTypes.FirstOrDefault(x => x.RoomTypeName == RoomType.SelectedItem!.ToString())!;
 
 
                 newRoom.Photo = "images/" + ImageName;
+
 
 
                 context.Rooms.Add(newRoom);
@@ -225,9 +241,9 @@ public partial class AddEditRoom : Window
 
         var roomToDelete = context.Rooms.Where(x => x.RoomId == roomId).FirstOrDefault();
 
-  
-            context.Rooms.Remove(roomToDelete);
-            context.SaveChanges();
+
+        context.Rooms.Remove(roomToDelete);
+        context.SaveChanges();
 
         var nice = MessageBoxManager.GetMessageBoxStandard("Успех", "Комната удалена", MsBox.Avalonia.Enums.ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Success);
         await nice.ShowAsync();
@@ -272,7 +288,9 @@ public partial class AddEditRoom : Window
                 return;
             }
 
-            context.Rooms.Update(updateroom);
+
+
+            context.Entry(updateroom).State = EntityState.Modified;
             await context.SaveChangesAsync();
 
             var message = MessageBoxManager.GetMessageBoxStandard("Успех", "Комната изменена", MsBox.Avalonia.Enums.ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Success);

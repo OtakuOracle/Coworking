@@ -2,11 +2,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		x:CompileBindings="False"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:CompileBindings="False"
         x:Class="Coworking.RoomWindow"
-        Title="Каталог помещений"
-        Icon="Icon/icon.png">
+        Title="RoomWindow">
 
 	<DockPanel>
 		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="5">
@@ -29,16 +28,16 @@
 			<Button Content="Бронирования" Margin="5" Name="BookingButton" IsVisible="False" Click="BookingButton_Click" Background="#EE82EE"  FontFamily="Times New Roman"></Button>
 		</StackPanel>
 
-		<ListBox Name="RoomsBox" SelectionChanged="RoomsBox_SelectionChanged">
-			<ListBox.ItemTemplate>
-				<DataTemplate>
-					
-					<DockPanel>
-						<StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5" DockPanel.Dock="Left">
-							<Image Source="{Binding GetPhoto}" Height="80" Width="80" Margin="5"  />
-						</StackPanel>
-
-						<StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">
+				
+	<ListBox Name="RoomsBox" SelectionChanged="RoomsBox_SelectionChanged">
+		<ListBox.ItemTemplate>
+			<DataTemplate>
+				<DockPanel>
+				<StackPanel Orientation="Vertical" VerticalAlignment="Center" DockPanel.Dock="Left" Margin="5">
+					<Image Source="{Binding GetPhoto}" Height="80" Width="80"></Image>
+					</StackPanel>
+			
+				<StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">
 							<TextBlock Text="{Binding RoomName, StringFormat='Название:{0}'}" FontFamily="Times New Roman" Margin="5"/>
 							<TextBlock Text="{Binding RoomType.RoomTypeName, StringFormat='Тип:{0}'}" FontFamily="Times New Roman" Margin="5"/>
 							<TextBlock Text="{Binding Capacity, StringFormat='Вместимость:{0}'}" FontFamily="Times New Roman" Margin="5"/>
@@ -49,18 +48,21 @@
 							<TextBlock Text="{Binding Discount, StringFormat='Скидка:{0}'}" Background="{Binding ColorDiscount}" FontFamily="Times New Roman" Margin="5"/>
 							<TextBlock Text="{Binding Description, StringFormat='Описание:{0}'}" FontFamily="Times New Roman" Margin="5"/>
 							<TextBlock Text="{Binding Cost, StringFormat='Цена:{0}'}" FontFamily="Times New Roman" Margin="5"/>
-                            <TextBlock Text="Оборудование:" FontFamily="Times New Roman" Margin="5" FontWeight="Bold"/>
-							
-                            <ItemsControl ItemsSource="{Binding Equipment}">  
-                            <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding EquipmentName, StringFormat='- {0}'}" FontFamily="Times New Roman"/>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-						</StackPanel>
+				 <TextBlock Text="Оборудование:" 
+               FontFamily="Times New Roman"/>
+
+					<ItemsControl ItemsSource="{Binding RoomEquipments}">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+
+								<TextBlock Text="{Binding Equipment.EquipmentName}" 
+										   Margin="20,2,0,0" 
+										   FontFamily="Times New Roman"/>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+					</StackPanel>
 					</DockPanel>
-					
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
