@@ -74,51 +74,39 @@ public partial class AddEditRoom : Window
         var room = DataContext as Room;
         if (room == null) return;
 
-        using (TrenirovkaContext context = new TrenirovkaContext())
+        var equipmentId = (int)checkBox.Tag!;
+
+        using (var context = new TrenirovkaContext()) 
         {
-            var equipmentId = (int)checkBox.Tag!;
-            var equipment = context.Equipment.FirstOrDefault(x => x.EquipmentId == equipmentId);
+            var equipmentInDb = context.Equipment.Any(x => x.EquipmentId == equipmentId);
+            if (!equipmentInDb) return;
 
-            if (equipment != null)
+            var EquipmentInRoom = context.RoomEquipments
+                .FirstOrDefault(re => re.RoomId == room.RoomId && re.EquipmentId == equipmentId);
+
+            if (checkBox.IsChecked == true)
             {
-                if (checkBox.IsChecked == true)
+                if (EquipmentInRoom == null)
                 {
-                    var updateEquipment = room.RoomEquipments
-                        .FirstOrDefault(re => re.EquipmentId == equipmentId);
-
-                    if (updateEquipment == null)
+                    var newRoomEquipment = new RoomEquipment
                     {
-                        var newRoomEquipment = new RoomEquipment
-                        {
-                            RoomId = room.RoomId,
-                            EquipmentId = equipment.EquipmentId,
-                        };
-
-                        room.RoomEquipments.Add(newRoomEquipment);
-                        context.RoomEquipments.Add(newRoomEquipment); // Нужно добавить в контекст для сохранения
-                    }
-                    else
-                    {
-
-                        // ИСПРАВЛЕНО: используем existingEquipment вместо несуществующей переменной
-                        context.RoomEquipments.Update(updateEquipment);
-                    }
+                        RoomId = room.RoomId,
+                        EquipmentId = equipmentId 
+                    };
+                    context.RoomEquipments.Add(newRoomEquipment);
+                  
                 }
-                else
-                {
-                    var itemToRemove = room.RoomEquipments
-                        .FirstOrDefault(re => re.EquipmentId == equipmentId);
-
-                    if (itemToRemove != null)
-                    {
-                        room.RoomEquipments.Remove(itemToRemove);
-                        var dbItem = context.RoomEquipments.FirstOrDefault(re => re.RoomId == room.RoomId && re.EquipmentId == equipmentId);
-                        if (dbItem != null) context.RoomEquipments.Remove(dbItem);
-                    }
-                }
-
-                context.SaveChanges();
             }
+            else
+            {
+                if (EquipmentInRoom != null)
+                {
+                    context.RoomEquipments.Remove(EquipmentInRoom);
+                    
+                }
+            }
+
+            context.SaveChanges();
         }
 
         DataContext = null;

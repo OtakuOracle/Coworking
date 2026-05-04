@@ -23,14 +23,10 @@ namespace Coworking.Models
         public virtual DbSet<RoomType> RoomTypes { get; set; }
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        // Добавлен DbSet для новой сущности
         public virtual DbSet<RoomEquipment> RoomEquipments { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // Проверьте, стоит ли это здесь или в файле конфигурации.
-            // Если вы используете Dependency Injection, этот метод может быть не нужен,
-            // а строка подключения будет передаваться через конструктор.
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseNpgsql("Host=localhost;Username=nastya;Password=123;Port=5438;Database=trenirovka");
@@ -217,13 +213,10 @@ namespace Coworking.Models
                     .HasConstraintName("user_role_id_fkey");
             });
 
-            // --- Настройки для RoomEquipment (связующая таблица) ---
             modelBuilder.Entity<RoomEquipment>(entity =>
             {
-                // Указываем имя таблицы и схему
                 entity.ToTable("room_equipment", "coworking");
 
-                // Настройка первичного ключа
                 entity.HasKey(re => new { re.RoomId, re.EquipmentId })
                       .HasName("pk_room_equipment"); // Устанавливаем имя первичного ключа
 

@@ -28,10 +28,9 @@
 				<ListBox.ItemTemplate>
 					<DataTemplate>
 						<CheckBox Content="{Binding EquipmentName}"
-							IsChecked="{Binding IsSelected}"
+							IsChecked="{Binding IsChecked}"
 							Tag="{Binding EquipmentId}"
-							Checked="CheckBox_IsCheckedChanged"
-							Unchecked="CheckBox_IsCheckedChanged">
+							Checked="CheckBox_IsCheckedChanged">
 						</CheckBox>
 					</DataTemplate>
 				</ListBox.ItemTemplate>

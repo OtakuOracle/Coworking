@@ -49,7 +49,7 @@ public partial class RoomWindow : Window
         var allRooms = context.Rooms
                               .Include(x => x.RoomType) // Загружаем тип комнаты
                               .Include(x => x.RoomEquipments) // Загружаем промежуточную таблицу (связки)
-                               .ThenInclude(re => re.Equipment) // Загружаем данные из таблицы Equipment
+                              .ThenInclude(re => re.Equipment) // Загружаем данные из таблицы Equipment
                               .ToList();
 
         switch (Sort.SelectedIndex)
@@ -108,7 +108,7 @@ public partial class RoomWindow : Window
     {
         if (RoomsBox.SelectedItem is Room room)
         {
-            LoadRoomEquipment(room);
+          
 
             if (localUser != null)
             {
@@ -123,19 +123,7 @@ public partial class RoomWindow : Window
             }
         }
     }
-    private void LoadRoomEquipment(Room room)
-    {
-        if (room != null && room.Equipment != null)
-        {
-            var equipmentList = room.Equipment.ToList();
-
-            if (this.FindControl<ItemsControl>("RoomEquipmentList") is ItemsControl equipmentListControl)
-            {
-                equipmentListControl.ItemsSource = equipmentList;
-            }
-        }
-
-    }
+  
 
     private void BookingButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
