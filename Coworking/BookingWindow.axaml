@@ -9,16 +9,17 @@
 	
 	<DockPanel>
 		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="5">
-			<ComboBox Margin="5" Width="200" Name="Filter" SelectionChanged="Filter_SelectionChanged" FontFamily="Times New Roman"></ComboBox>
-			<ComboBox Margin="5" Width="200" Name="UserFilter" SelectionChanged="UserFilter_SelectionChanged" FontFamily="Times New Roman"></ComboBox>
+			<ComboBox Margin="5" Width="200" Name="Filter" SelectionChanged="Filter_SelectionChanged" IsVisible="False" FontFamily="Times New Roman"></ComboBox>
+			<ComboBox Margin="5" Width="200" Name="UserFilter" SelectionChanged="UserFilter_SelectionChanged" IsVisible="False" FontFamily="Times New Roman"></ComboBox>
 			<Image Source="Icon/logo.ico" Width="200" Height="200" HorizontalAlignment="Center" Margin="0,10"/>
 		</StackPanel>
 
 		<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
 			<Button Content="Назад" Margin="5" Click="Back_Click"  FontFamily="Times New Roman"></Button>
+			<Button Content="Добавить" Margin="5" Click="Add_Click" Name="AddButton" FontFamily="Times New Roman"></Button>
 		</StackPanel>
 
-		<ListBox Name="BookingsBox">
+		<ListBox Name="BookingsBox" SelectionChanged="BookingsBox_SelectionChanged">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<DockPanel>

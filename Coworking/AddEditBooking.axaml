@@ -1,0 +1,53 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:CompileBindings="False"
+        x:Class="Coworking.AddEditBooking"
+        Title="AddEditBooking">
+
+	<StackPanel Orientation="Vertical" HorizontalAlignment="Center" Spacing="10">
+
+		<ComboBox Name="User" Width="200" HorizontalAlignment="Center" PlaceholderText="Выберите клиента" FontFamily="Times New Roman"/>
+		<ComboBox Name="Room" Width="200" HorizontalAlignment="Center" PlaceholderText="Выберите комнату" FontFamily="Times New Roman"/>
+		<ComboBox Name="BookingStatus" Width="200" HorizontalAlignment="Center" PlaceholderText="Выберите статус" FontFamily="Times New Roman"/>
+		<ComboBox Name="Service" Width="200" HorizontalAlignment="Center" PlaceholderText="Выберите услугу" FontFamily="Times New Roman"/>
+
+		<DatePicker Name="DateBookPicker"/>
+		<TimePicker Name="TimeBookPicker"/>
+
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+			<Button Content="Изменить"
+                    Margin="5"
+                    Click="Edit_Click"
+                    IsVisible="False"
+                    Background="#F5F5DC"
+                    Name="EditBut"
+                    FontFamily="Times New Roman"/>
+
+			<Button Content="Добавить"
+                    Width="100"
+                    Margin="5"
+                    Click="Add_Click"
+					Name="AddBut"
+                    Background="#FFA07A"
+                    FontFamily="Times New Roman"/>
+
+			<Button Content="Удалить"
+                    Width="100"
+                    Margin="5"
+                    Click="Delete_Click"
+                    Background="Red"
+                    Name="DeleteBut"
+                    FontFamily="Times New Roman"/>
+		</StackPanel>
+
+		<Button Content="Назад"
+                Width="100"
+                Margin="5"
+                HorizontalAlignment="Center"
+                Click="Back_Click"
+                FontFamily="Times New Roman"/>
+	</StackPanel>
+</Window>

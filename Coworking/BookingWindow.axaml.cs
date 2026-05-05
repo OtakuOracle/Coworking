@@ -4,6 +4,7 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Coworking.Models;
 using Microsoft.EntityFrameworkCore;
+using MsBox.Avalonia;
 
 namespace Coworking;
 
@@ -37,12 +38,9 @@ public partial class BookingWindow : Window
         switch (roleId)
         {
             //1 не видит сфильтрации, только добавление\удал\редактиров
-            //case 1:  Filter.IsVisible = true; UserFilter.IsVisible = true; break;
+            case 1:  Filter.IsVisible = false; UserFilter.IsVisible = false; break;
             case 2: Filter.IsVisible = true; UserFilter.IsVisible = true; break;
-            default:
-                Filter.IsVisible = false;
-                UserFilter.IsVisible = false;
-                break;
+           
         }
     }
 
@@ -115,4 +113,34 @@ public partial class BookingWindow : Window
             this.Close();
         }
     }
+
+
+    private void Add_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        var add = new AddEditBooking();
+        add.Show();
+        this.Close();
+    }
+
+
+    private void BookingsBox_SelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (BookingsBox.SelectedItem is Booking booking)
+        {
+
+
+            if (Class1.isAdmin == true)
+            {
+                var addedit = new AddEditBooking(localUser, booking);
+                addedit.Show();
+                this.Close();
+            }
+            else
+            {
+                var error = MessageBoxManager.GetMessageBoxStandard("Ошибка", "Пожалуйста, войдите в систему, чтобы редактировать", MsBox.Avalonia.Enums.ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Error);
+                error.ShowAsync();
+            }
+        }
+    }
+
 }
