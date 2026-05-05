@@ -7,17 +7,9 @@
         x:Class="Coworking.AddEditBooking"
         Title="AddEditBooking">
 
-	<StackPanel Orientation="Vertical" HorizontalAlignment="Center" Spacing="10">
+	<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
 
-		<ComboBox Name="User" Width="200" HorizontalAlignment="Center" PlaceholderText="Выберите клиента" FontFamily="Times New Roman"/>
-		<ComboBox Name="Room" Width="200" HorizontalAlignment="Center" PlaceholderText="Выберите комнату" FontFamily="Times New Roman"/>
-		<ComboBox Name="BookingStatus" Width="200" HorizontalAlignment="Center" PlaceholderText="Выберите статус" FontFamily="Times New Roman"/>
-		<ComboBox Name="Service" Width="200" HorizontalAlignment="Center" PlaceholderText="Выберите услугу" FontFamily="Times New Roman"/>
-
-		<DatePicker Name="DateBookPicker"/>
-		<TimePicker Name="TimeBookPicker"/>
-
-		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
 			<Button Content="Изменить"
                     Margin="5"
                     Click="Edit_Click"
@@ -41,13 +33,23 @@
                     Background="Red"
                     Name="DeleteBut"
                     FontFamily="Times New Roman"/>
-		</StackPanel>
 
-		<Button Content="Назад"
+			<Button Content="Назад"
                 Width="100"
                 Margin="5"
                 HorizontalAlignment="Center"
                 Click="Back_Click"
                 FontFamily="Times New Roman"/>
+		</StackPanel>
+
+		<ComboBox Name="User" Width="200" HorizontalAlignment="Center" PlaceholderText="Выберите клиента" FontFamily="Times New Roman"/>
+		<ComboBox Name="Room" Width="200" HorizontalAlignment="Center" PlaceholderText="Выберите комнату" FontFamily="Times New Roman"/>
+		<ComboBox Name="BookingStatus" Width="200" HorizontalAlignment="Center" PlaceholderText="Выберите статус" FontFamily="Times New Roman"/>
+		<ComboBox Name="Service" Width="200" HorizontalAlignment="Center" PlaceholderText="Выберите услугу" FontFamily="Times New Roman"/>
+
+		<DatePicker Name="DateBookPicker"/>
+		<TimePicker Name="TimeBookPicker"/>
+
+		
 	</StackPanel>
 </Window>

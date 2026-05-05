@@ -3,83 +3,83 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-		x:CompileBindings="False"
+        x:CompileBindings="False"
         x:Class="Coworking.AddEditRoom"
         Title="AddEditRoom">
 
-	<ScrollViewer VerticalScrollBarVisibility="Auto"
-					 HorizontalScrollBarVisibility="Disabled">
-		<StackPanel Orientation="Vertical"
-                    HorizontalAlignment="Center"
-                    Margin="20"
-                    Spacing="8">
-
-			<TextBox Text="{Binding RoomName}" Width="200" Watermark="Введите название"  FontFamily="Times New Roman"></TextBox>
-			<TextBox Text="{Binding Capacity}" Width="200" Watermark="Введите вместимость" FontFamily="Times New Roman"></TextBox>
-			<TextBox Text="{Binding Cost}" Width="200" Watermark="Введите цену" FontFamily="Times New Roman"></TextBox>
-			<TextBox Text="{Binding MinTime}" Width="200" Watermark="Введите мин.время" FontFamily="Times New Roman"></TextBox>
-			<TextBox Text="{Binding Rating}" Width="200" Watermark="Введите рейтинг" FontFamily="Times New Roman"></TextBox>
-			<TextBox Text="{Binding Discount}" Width="200" Watermark="Введите скидку" FontFamily="Times New Roman"></TextBox>
-			<TextBox Text="{Binding Description}" Width="200" Watermark="Введите описание" FontFamily="Times New Roman"></TextBox>
-			<ComboBox Name="RoomType" Width="200" HorizontalAlignment="Center" PlaceholderText="Выберите тип" FontFamily="Times New Roman"></ComboBox>
+	<DockPanel>
+		<ScrollViewer VerticalScrollBarVisibility="Auto">
+		<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
 			
-			<TextBlock Text="Оборудование:" TextAlignment="Left" HorizontalAlignment="Center"></TextBlock>
-			<ListBox Name="ListEquipment" ItemsSource="{Binding ListEquipment}" HorizontalAlignment="Center">
-				<ListBox.ItemTemplate>
-					<DataTemplate>
-						<CheckBox Content="{Binding EquipmentName}"
-							IsChecked="{Binding IsChecked}"
-							Tag="{Binding EquipmentId}"
-							Checked="CheckBox_IsCheckedChanged">
-						</CheckBox>
-					</DataTemplate>
-				</ListBox.ItemTemplate>
-			</ListBox>
+		
+				<StackPanel HorizontalAlignment="Center" DockPanel.Dock="Bottom" Orientation="Horizontal">
+					<Button Content="Изменить"
+                            Margin="5"
+                            Click="Edit_Click"
+                            IsVisible="False"
+                            Background="#F5F5DC"
+                            Name="EditBut"
+                            FontFamily="Times New Roman"/>
 
+					<Button Content="Назад"
+                            Width="100"
+                            Margin="5"
+                            Click="Back_Click"
+                            FontFamily="Times New Roman"/>
 
-			<Image Source="{Binding Photo}" Height="100" Width="100" Margin="5" Name="ImageBox"></Image>
+					<Button Content="Добавить"
+                            Width="100"
+                            Margin="5"
+                            Click="Add_Click"
+                            Background="#FFA07A"
+							Name="AddBut"
+                            FontFamily="Times New Roman"/>
 
+					<Button Content="Изображение"
+                            Width="100"
+                            Margin="5"
+                            Click="AddImage_Click"
+                            Background="#00FFFF"
+                            FontFamily="Times New Roman"/>
 
-			<WrapPanel HorizontalAlignment="Center" Margin="10" ItemWidth="140">
-				<Button Content="Изменить"
-                        Margin="5"
-                        Click="Edit_Click"
-                        IsVisible="False"
-                        Background="#F5F5DC"
-                        Name="EditBut"
-                        FontFamily="Times New Roman"/>
+					<Button Content="Удалить"
+                            Width="100"
+                            Margin="5"
+                            Click="Delete_Click"
+                            Background="Red"
+                            IsVisible="False"
+                            Name="DeleteBut"
+                            FontFamily="Times New Roman"/>
+				</StackPanel>
 
-				<Button Content="Назад"
-						Width="100"
-                        Margin="5"
-                        Click="Back_Click"
-                        FontFamily="Times New Roman"/>
+				<StackPanel Orientation="Vertical"  HorizontalAlignment="Center">
 
-				<Button Content="Добавить"
-						Width="100"
-                        Margin="5"
-                        Click="Add_Click"
-                        Background="#FFA07A"
-                        FontFamily="Times New Roman"/>
+					<TextBox Text="{Binding RoomName}" Width="200" Watermark="Введите название"  FontFamily="Times New Roman"></TextBox>
+					<TextBox Text="{Binding Capacity}" Width="200" Watermark="Введите вместимость" FontFamily="Times New Roman"></TextBox>
+					<TextBox Text="{Binding Cost}" Width="200" Watermark="Введите цену" FontFamily="Times New Roman"></TextBox>
+					<TextBox Text="{Binding MinTime}" Width="200" Watermark="Введите мин.время" FontFamily="Times New Roman"></TextBox>
+					<TextBox Text="{Binding Rating}" Width="200" Watermark="Введите рейтинг" FontFamily="Times New Roman"></TextBox>
+					<TextBox Text="{Binding Discount}" Width="200" Watermark="Введите скидку" FontFamily="Times New Roman"></TextBox>
+					<TextBox Text="{Binding Description}" Width="200" Watermark="Введите описание" FontFamily="Times New Roman"></TextBox>
+					<ComboBox Name="RoomType" Width="200" HorizontalAlignment="Center" PlaceholderText="Выберите тип" FontFamily="Times New Roman"></ComboBox>
 
-				<Button Content="Изображение"
-						Width="100"
-                        Margin="5"
-                        Click="AddImage_Click"
-						Background="#00FFFF"
-                        FontFamily="Times New Roman"/>
+					<TextBlock Text="Оборудование:" TextAlignment="Left" HorizontalAlignment="Center"></TextBlock>
+					<ListBox Name="ListEquipment" ItemsSource="{Binding ListEquipment}" HorizontalAlignment="Center">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<CheckBox Content="{Binding EquipmentName}"
+                                    IsChecked="{Binding IsChecked}"
+                                    Tag="{Binding EquipmentId}"
+                                    Checked="CheckBox_IsCheckedChanged">
+								</CheckBox>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
 
-				<Button Content="Удалить"
-						Width="100"
-                        Margin="5"
-                        Click="Delete_Click"
-                        Background="Red"
-                        IsVisible="False"
-                        Name="DeleteBut"
-                        FontFamily="Times New Roman"/>
-			</WrapPanel>
+					<Image Source="{Binding Photo}" Height="100" Width="100" Margin="5" Name="ImageBox"></Image>
 
-		</StackPanel>
-	</ScrollViewer>
+				</StackPanel>
+			</StackPanel>
+		</ScrollViewer>
+	</DockPanel>
 </Window>
-

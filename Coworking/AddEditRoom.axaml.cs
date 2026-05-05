@@ -47,6 +47,7 @@ public partial class AddEditRoom : Window
         LoadTypeRoom();
         DataContext = updateroom;
         EditBut.IsVisible = true;
+        AddBut.IsVisible = false;
         DeleteBut.IsVisible = true;
         ImageBox.Source = updateroom.GetPhoto;
 
